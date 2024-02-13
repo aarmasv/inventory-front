@@ -70,6 +70,22 @@ export class CategoryComponent implements OnInit{
       duration:2000
     })
   }
+
+  edit(id:number, name: string, description: string){
+    const dialogRef = this.dialog.open(NewCategoryComponent, {
+      width: '450px',
+      data: {id: id, name: name, description: description},
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result==1){
+        this.openSnackBar("Categoría Actualizada", "Exitosa");
+        this.getCategories();
+      }else if (result == 2){
+        this.openSnackBar("Error al Actualizar Categoría", "Error");
+      }
+    });
+  }
 }
 
 export interface CategoryElement {
