@@ -105,6 +105,17 @@ export class CategoryComponent implements OnInit{
     });
 
   }
+
+  buscar(termino: string){
+    if(termino.length === 0){
+      return this.getCategories();
+    }
+
+    this.categoryService.getCategoryById(termino).
+      subscribe((resp:any) => {
+        this.processCategoriesResponse(resp);
+      })
+  }
 }
 
 export interface CategoryElement {
