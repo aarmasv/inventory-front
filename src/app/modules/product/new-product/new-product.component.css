@@ -1,0 +1,19 @@
+.product-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.product-container > * {
+    width: 100%;
+}
+
+.input-file{
+    display: none;
+}
+
+.subir{
+    padding: 5px 16px;
+    background: #673ab7;
+    color: white;
+    border: 0px solid white;
+}
