@@ -20,17 +20,17 @@ export class CategoryService {
   }
 
   updateCategory(body:any, id:any){
-    const endpoint = `${base_url}/categories/ ${id}`;
+    const endpoint = `${base_url}/categories/${id}`;
     return this.http.put(endpoint, body);
   }
 
   deleteCategory(id:any){
-    const endpoint = `${base_url}/categories/ ${id}`;
+    const endpoint = `${base_url}/categories/${id}`;
     return this.http.delete(endpoint);
   }
 
   getCategoryById(id:any){
-    const endpoint = `${base_url}/categories/ ${id}`;
+    const endpoint = `${base_url}/categories/${id}`;
     return this.http.get(endpoint);
   }
 }
