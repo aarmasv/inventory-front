@@ -38,6 +38,10 @@ export class NewProductComponent implements OnInit {
     });
     this.estadoFormulario = "Agregar";
     this.getCategories();
+    if(this.data != null){
+      this.updateForm(this.data);
+      this.estadoFormulario = "Actualizar";
+    }
   }
 
   onSave(){
@@ -56,21 +60,28 @@ export class NewProductComponent implements OnInit {
     uploadImageData.append('quantity', data.quantity);
     uploadImageData.append('categoryId', data.category);
 
-    this.productservice.saveProduct(uploadImageData)
-    .subscribe((data : any) => {
-      console.log("datos guardados: "+data);
-      this.dialogRef.close(1)
-    }, (error: any) => {
-      this.dialogRef.close(2)
-    })
+    if(this.data != null){
+      this.productservice.updateProduct(uploadImageData, this.data.id)
+      .subscribe((data : any) => {
+        console.log("datos actualizados: "+data);
+        this.dialogRef.close(1)
+      }, (error: any) => {
+        this.dialogRef.close(2)
+      })
+    }else{
+      this.productservice.saveProduct(uploadImageData)
+      .subscribe((data : any) => {
+        console.log("datos guardados: "+data);
+        this.dialogRef.close(1)
+      }, (error: any) => {
+        this.dialogRef.close(2)
+      })
+    }
+
   }
 
   onCancel(){
     this.dialogRef.close(3);
-  }
-
-  updateForm(data: any){
-
   }
 
   getCategories() {
@@ -85,6 +96,16 @@ export class NewProductComponent implements OnInit {
     this.selectedFile=event.target.files[0];
     console.log(this.selectedFile);
     this.nameImg=event.target.files[0].name;
+  }
+
+  updateForm(data: any){
+    this.productForm = this.fb.group({
+      name: [data.name, Validators.required],
+      price: [data.price, Validators.required],
+      quantity: [data.quantity, Validators.required],
+      category: [data.category.id, Validators.required],
+      picture: ['', Validators.required]
+    });
   }
 
 }

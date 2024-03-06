@@ -26,6 +26,7 @@ export class NewCategoryComponent implements OnInit{
     this.estadoFormulario = "Agregar";
 
     console.log("Data: " , this.data);
+    
     if(this.data != null){
       this.updateForm(this.data);
       this.estadoFormulario = "Actualizar";
