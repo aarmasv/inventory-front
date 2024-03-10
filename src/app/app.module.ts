@@ -3,10 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DashboardComponent } from './modules/dashboard/pages/dashboard.component';
-import { HomeComponent } from './modules/dashboard/components/home/home.component';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
-import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -31,13 +28,14 @@ function initializeKeycloak(keycloak: KeycloakService) {
 @NgModule({
   declarations: [
     AppComponent
-  ],
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     DashboardModule,
     KeycloakAngularModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+
   ],
   providers: [
     {
